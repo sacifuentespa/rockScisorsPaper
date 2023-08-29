@@ -58,15 +58,12 @@ function game() {
     }
     
     if (computerScore > humanScore){
-        console.log("Computer wins!");
-        return 0;
+        return "Computer wins!";
     }else if (computerScore < humanScore){
-        console.log("Human wins!");
-        return 0;
+        return "Human wins!";
     }else {
-        console.log("It was a tie!")
+        return "It was a tie!";
     }
-    
 }
 
-game();
+alert(game());
