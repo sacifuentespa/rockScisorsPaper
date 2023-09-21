@@ -78,6 +78,7 @@ function resetGame() {
     humanScore = 0;
     computerScore = 0;
     announcement.textContent = '';
+    score.textContent = '';
     console.clear();
     game();
      // Restart the game
