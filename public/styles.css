@@ -59,3 +59,10 @@ img{
 p{
     white-space: pre-line;
 }
+
+.header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,10 +1,15 @@
+//Initialize the needed variables for the functions
 let choice = null;
 let humanScore = 0;
 let computerScore = 0;
+let round = 0;
 const announcement = document.querySelector('#resultAnnouncement h2');
 const score = document.querySelector('#resultAnnouncement p');
 const resetButton = document.querySelector('#resetButton');
+const roundAnnounce = document.querySelector('h4');
+const selection = document.querySelector('h5');
 
+//random generation for the computer choice
 function getComputerChoice() {
     let numberChoice = Math.floor(Math.random() * 3);
     if (numberChoice == 0) {
@@ -15,6 +20,7 @@ function getComputerChoice() {
     return "Paper";
 }
 
+//capitalize the choice from choiceSelection function (from legacy code)
 function getHumanChoice() {
     let choiceCapitalized;
     choiceCapitalized = choice[0].toUpperCase();
@@ -25,11 +31,16 @@ function getHumanChoice() {
 
 }
 
+//select the choice from the human and show the result of the round, change score and check who wins
 function choiceSelection(e) {
-
     choice = e.currentTarget.id;
     const humanChoice = getHumanChoice();
-    const result = checkRound(getComputerChoice(), humanChoice);    
+    const computerChoice = getComputerChoice();
+    round += 1;
+    roundAnnounce.textContent = `In the round ${round}`
+    selection.textContent = `Human Chose ${humanChoice} - Computer Chose ${computerChoice}`
+
+    const result = checkRound(computerChoice, humanChoice);    
     announcement.textContent = `The round winner is: ${result}`;
     if (result == "Computer"){
         computerScore += 1;
@@ -43,13 +54,11 @@ function choiceSelection(e) {
     }
 }
 
+//Check who win between the computer and the human
 function checkRound(computer, human) {
     let computerChoice = computer;
     let humanChoice = human;
 
-    console.log("The computer chooses " + computerChoice)
-    console.log("The human chooses " + humanChoice)
-    
     if (computerChoice == humanChoice) {
         return "It's a tie!";
     } else if ((computerChoice == "Rock" && humanChoice == "Scissors") ||
@@ -61,6 +70,7 @@ function checkRound(computer, human) {
     }
 }
 
+//Announce the champion
 function endGame() {
     const possibleChoices = document.querySelectorAll('button');
     possibleChoices.forEach(function (button) {
@@ -74,11 +84,15 @@ function endGame() {
     }
 }
 
+//reset score 
 function resetGame() {
     humanScore = 0;
     computerScore = 0;
+    round = 0;
     announcement.textContent = '';
     score.textContent = '';
+    roundAnnounce.textContent = '';
+    selection.textContent = '';
     console.clear();
     game();
      // Restart the game
