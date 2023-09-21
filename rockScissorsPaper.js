@@ -29,8 +29,6 @@ function getHumanChoice() {
 function checkRound(computer, human) {
     let computerChoice = computer;
     let humanChoice = human;
-    console.log(computerChoice)
-    console.log(humanChoice)
     if (computerChoice == humanChoice) {
         return "It's a tie!";
     } else if ((computerChoice == "Rock" && humanChoice == "Scissors") ||

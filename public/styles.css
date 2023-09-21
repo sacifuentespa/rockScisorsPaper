@@ -20,7 +20,7 @@ body {
     flex-grow: 1;
 }
 
-button{
+.buttonsDiv button{
     max-width: 25%;
     max-height: 25%;
     height: 150px;
@@ -42,4 +42,20 @@ button:hover{
 
 img{
     max-width: 55%;
+}
+
+#resetButton{
+    height: 75px;
+    width: 75px;
+    max-width: 25%;
+    max-height: 25%;
+    border-radius: 50%;
+    background-color: red;
+    border: solid;
+    border-color: yellow;
+    color: white;
+}
+
+p{
+    white-space: pre-line;
 }

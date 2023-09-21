@@ -2,6 +2,8 @@ let choice = null;
 let humanScore = 0;
 let computerScore = 0;
 const announcement = document.querySelector('#resultAnnouncement h2');
+const score = document.querySelector('#resultAnnouncement p');
+const resetButton = document.querySelector('#resetButton');
 
 function getComputerChoice() {
     let numberChoice = Math.floor(Math.random() * 3);
@@ -30,10 +32,11 @@ function choiceSelection(e) {
     const result = checkRound(getComputerChoice(), humanChoice);    
     announcement.textContent = `The round winner is: ${result}`;
     if (result == "Computer"){
-        humanScore += 1;
+        computerScore += 1;
     }else if(result == "Human"){
         humanScore += 1;
     }
+    score.textContent = `Computer: ${computerScore}\r\nHuman: ${humanScore}`;
     console.log(`human: ${humanScore} Computer: ${computerScore}`)
     if (computerScore == 5|| humanScore == 5){
         endGame();
@@ -43,6 +46,7 @@ function choiceSelection(e) {
 function checkRound(computer, human) {
     let computerChoice = computer;
     let humanChoice = human;
+
     console.log("The computer chooses " + computerChoice)
     console.log("The human chooses " + humanChoice)
     
@@ -70,12 +74,21 @@ function endGame() {
     }
 }
 
+function resetGame() {
+    humanScore = 0;
+    computerScore = 0;
+    announcement.textContent = '';
+    console.clear();
+    game();
+     // Restart the game
+}
+
 function game() {
-    const possibleChoices = document.querySelectorAll('button');
+    const possibleChoices = document.querySelectorAll('.buttonsDiv button');
     possibleChoices.forEach(function (button) {
         button.addEventListener('click', choiceSelection);
     });
-
+    resetButton.addEventListener('click', resetGame);
 }
 
 game()
